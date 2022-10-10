@@ -1,47 +1,29 @@
 package ManagersClasses;
 
+import Repositories.MoviesRepositories;
+
 public class ManagerMovies {
-    private Movie[] repo = new Movie[0];
+    private MoviesRepositories repo;
     private int lastAddedMovies;
 
-    public Movie[] getRepo() {
-        return repo;
-    }
-
-    public ManagerMovies() {
+    public ManagerMovies(MoviesRepositories repo) {
+        this.repo = repo;
         this.lastAddedMovies = 10;
     }
 
-    public ManagerMovies(int lastAddedMovies) {
+    public ManagerMovies(MoviesRepositories repo, int lastAddedMovies) {
+        this.repo = repo;
         this.lastAddedMovies = lastAddedMovies;
     }
 
-    public void addMovie (Movie movie) {
-        Movie[] tmp = new Movie[repo.length + 1];
-        for (int i = 0; i < repo.length; i++) {
-            tmp[i] = repo[i];
-        }
-        tmp[tmp.length - 1] = movie;
-        repo = tmp;
-    }
-
-    public Movie[] findAll() {
-        Movie[] list = new Movie[repo.length];
-        for (int i = 0; i < repo.length; i++) {
-            list[i] = repo[i];
-        }
-        return list;
-    }
-
-    public Movie[] findLast() {
-        int lengthResult = Math.min(lastAddedMovies, repo.length);
+    public Movie[] findLast(MoviesRepositories repo) {
+        int lengthResult = Math.min(repo.getItems().length, lastAddedMovies);
 
         Movie[] lastMovies = new Movie[lengthResult];
         for (int i = 0; i < lastMovies.length; i++) {
-            lastMovies[i] = repo[repo.length - 1 - i];
+            lastMovies[i] = repo.getItems()[lengthResult - 1 - i];
         }
 
         return lastMovies;
     }
-
 }

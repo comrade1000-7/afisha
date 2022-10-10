@@ -1,44 +1,25 @@
 import ManagersClasses.ManagerMovies;
 import ManagersClasses.Movie;
+import Repositories.MoviesRepositories;
 import org.junit.jupiter.api.*;
+import org.mockito.Mockito;
+import static org.mockito.Mockito.*;
 
 public class ManagerMoviesTest {
-    ManagerMovies managerMovies = new ManagerMovies();
+    MoviesRepositories repo = Mockito.mock(MoviesRepositories.class);
+    ManagerMovies managerMovies = new ManagerMovies(repo);
 
-    Movie matrix = new Movie("Матрица", "Вачовски", "1999");
-    Movie twilight = new Movie("Сумерки", "Тоторо", "2003");
-    Movie armageddon = new Movie("Армегеддон", "Бэйн", "2010");
-
-    @BeforeEach
-    public void setup() {
-        managerMovies.addMovie(matrix);
-        managerMovies.addMovie(twilight);
-        managerMovies.addMovie(armageddon);
-    }
+    Movie matrix = new Movie(1, "Матрица", "Вачовски", "1999");
+    Movie twilight = new Movie(2, "Сумерки", "Тоторо", "2003");
+    Movie armageddon = new Movie(3, "Армегеддон", "Бэйн", "2010");
 
     @Test
-    public void shouldAddMovie () {
+    public void shouldReturnLastAddedMovies() {
+        Movie[] items = {matrix, twilight, armageddon};
+        doReturn(items).when(repo).getItems();
 
-        Movie movieTest = new Movie("1488", "Спилберг", "2011");
-        managerMovies.addMovie(movieTest);
-        Movie[] actual = managerMovies.getRepo();
-        Movie[] expected = {matrix, twilight, armageddon, movieTest};
-
-        Assertions.assertArrayEquals(expected, actual);
-    }
-
-    @Test
-    public void shouldFindLast() {
-        Movie[] actual = managerMovies.findLast();
         Movie[] expected = {armageddon, twilight, matrix};
-
-        Assertions.assertArrayEquals(expected, actual);
-    }
-
-    @Test
-    public void shouldFindAll() {
-        Movie[] actual = managerMovies.findAll();
-        Movie[] expected = {matrix, twilight, armageddon};
+        Movie[] actual = managerMovies.findLast(repo);
 
         Assertions.assertArrayEquals(expected, actual);
     }
