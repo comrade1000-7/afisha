@@ -41,7 +41,7 @@ public class MoviesRepositories {
         Movie[] tmp = new Movie[items.length - 1];
         for (Movie item : items) {
             if (item.getId() != id) {
-                tmp[index] = items[index];
+                tmp[index] = item;
                 index++;
             }
         }
