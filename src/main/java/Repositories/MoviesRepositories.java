@@ -6,7 +6,7 @@ public class MoviesRepositories {
     private Movie[] items = new Movie[0];
 
     public Movie[] getItems() {
-        return items;
+        return items.clone();
     }
 
     public Movie[] findAll (MoviesRepositories moviesRepositories) {
