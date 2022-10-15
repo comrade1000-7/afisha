@@ -1,11 +1,30 @@
 package ManagersClasses;
 
 public class Movie {
-    String title;
-    String director;
-    String year;
+    private int id;
+    private String title;
+    private String director;
 
-    public Movie(String title, String director, String year) {
+    public int getId() {
+        return id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getDirector() {
+        return director;
+    }
+
+    public String getYear() {
+        return year;
+    }
+
+    private String year;
+
+    public Movie(int id, String title, String director, String year) {
+        this.id = id;
         this.title = title;
         this.director = director;
         this.year = year;
