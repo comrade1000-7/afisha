@@ -10,7 +10,7 @@ public class MoviesRepositories {
     }
 
     public Movie[] findAll (MoviesRepositories moviesRepositories) {
-        return items;
+        return items.clone();
     }
 
     public void save (Movie movie) {
