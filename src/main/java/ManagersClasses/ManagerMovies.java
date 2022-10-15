@@ -5,7 +5,7 @@ public class ManagerMovies {
     private int lastAddedMovies;
 
     public Movie[] getRepo() {
-        return repo;
+        return repo.clone();
     }
 
     public ManagerMovies() {

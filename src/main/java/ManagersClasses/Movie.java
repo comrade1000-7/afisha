@@ -10,4 +10,10 @@ public class Movie {
         this.director = director;
         this.year = year;
     }
+
+    public void showMovie() {
+        System.out.println(title);
+        System.out.println(director);
+        System.out.println(year);
+    }
 }
