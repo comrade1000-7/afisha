@@ -26,4 +26,8 @@ public class ManagerMovies {
 
         return lastMovies;
     }
+
+    public void showRepo() {
+        System.out.println(repo);
+    }
 }
